@@ -1,0 +1,10 @@
+.layout {
+  padding: 80px 50px;
+  align-items: center;
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  & > * {
+    flex: 1;
+  }
+}
