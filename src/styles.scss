@@ -2,3 +2,18 @@
 
 html, body { width: 100%; height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #303030; }
+
+
+.mat-form-field.mat-focused .mat-form-field-label,
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: rgb(139, 251, 251);
+  input {
+    color: white;
+  }
+}
+
+.mat-form-field {
+  & .mat-input-element {
+    color: white;
+  }
+}

@@ -10,6 +10,6 @@ export class DataService {
   constructor(private _firestore: AngularFirestore) {}
 
   getData(): Observable<any[]> {
-    return this._firestore.collection('aspersor_1').valueChanges();
+    return this._firestore.collection('sensor_data').valueChanges();
   }
 }
