@@ -16,6 +16,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 //Modulo de Grafica
 import { ChartsModule } from 'ng2-charts';
@@ -25,6 +28,7 @@ import { GraficaComponent } from './components/grafica/grafica.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DataService } from './services/data.service';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { FiltroComponent } from './pages/filtro/filtro.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     TablaDatosComponent,
     GraficaComponent,
     HomeComponent,
+    FiltroComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DataService,
@@ -57,4 +64,4 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

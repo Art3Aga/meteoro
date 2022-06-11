@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field *ngIf="showFilter">
   <mat-label>Filtrar por día</mat-label>
   <input matInput [matDatepicker]="picker">
   <mat-hint>MM/DD/YYYY</mat-hint>

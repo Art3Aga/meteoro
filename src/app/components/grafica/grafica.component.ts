@@ -1,6 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { DataSensor } from 'src/app/models/dataSensor.model';
 
 @Component({
   selector: 'app-grafica',
@@ -8,6 +9,14 @@ import { Color, Label } from 'ng2-charts';
   styleUrls: ['./grafica.component.scss']
 })
 export class GraficaComponent implements OnInit, OnChanges {
+
+  @Input() dataSensor: DataSensor[] = [];
+  humedades: any[] = [];
+  temperaturas: any[] = [];
+  vientos: any[] = [];
+  presiones: any[] = [];
+  luces: any[] = [];
+  fechas: any[] = [];
 
   chartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
@@ -40,6 +49,14 @@ export class GraficaComponent implements OnInit, OnChanges {
   }
 
   setData() {
+    this.humedades.push(this.dataSensor.map(data => data.humedad));
+    this.temperaturas.push(this.dataSensor.map(data => data.temperatura));
+    this.vientos.push(this.dataSensor.map(data => data.viento));
+    this.luces.push(this.dataSensor.map(data => data.luz));
+    this.presiones.push(this.dataSensor.map(data => data.presion));
+    this.fechas.push(this.dataSensor.map(data => data.fecha));
+
+    this.chartData = [ { data: this.humedades, label: 'Humedad' }, { data: this.temperaturas, label: 'Temperatura' }, { data: this.vientos, label: 'Viento' }, { data: this.presiones, label: 'Presion' }, { data: this.luces, label: 'Luz' } ];
     // this.humedad = this.dataAspersor.map(data => data.humedad);
     // this.temperatura = this.dataAspersor.map(data => data.temperatura);
     // this.lineChartData = [ { data: this.humedad, label: 'Humedad' }, { data: this.temperatura, label: 'Temperatura' },  ]
