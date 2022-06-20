@@ -29,6 +29,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { DataService } from './services/data.service';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FiltroComponent } from './pages/filtro/filtro.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { FiltroComponent } from './pages/filtro/filtro.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     DataService,

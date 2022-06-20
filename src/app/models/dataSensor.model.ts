@@ -1,8 +1,8 @@
 export interface DataSensor {
-    humedad: string;
-    temperatura: string;
-    presion: string;
-    luz: string;
-    viento: string;
+    humedad: number;
+    temperatura: number;
+    presion: number;
+    luz: number;
+    viento: number;
     fecha: any;
 }

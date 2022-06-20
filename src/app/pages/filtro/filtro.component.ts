@@ -1,27 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { DataSensor } from 'src/app/models/dataSensor.model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-filtro',
   templateUrl: './filtro.component.html',
   styleUrls: ['./filtro.component.scss']
 })
-export class FiltroComponent implements OnInit {
+export class FiltroComponent implements AfterViewInit {
 
   dataFiltro: any[] = [
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 103059, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 4.0305, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 60305, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 9.0305, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 103051, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 1203057, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 1403057, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 1503054, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' },
-    { humedad: '80.00%', temperatura: '27.00 °C', presion: 1803054, luz: '28.44%', viento: '39.46 km/h', fecha: '9/6/22 20:45' }
+    // { humedad: 80.00, temperatura: 20.00, presion: 10.059, luz: 28.44, viento: 29.46, fecha: '9/6/22 20:45' },
+    // { humedad: 85.00, temperatura: 27.00, presion: 4.0305, luz: 28.44, viento: 49.46, fecha: '9/6/22 20:45' },
+    // { humedad: 80.00, temperatura: 25.00, presion: 60.305, luz: 28.44, viento: 19.46, fecha: '9/6/22 20:45' },
+    // { humedad: 80.00, temperatura: 37.00, presion: 9.0305, luz: 28.44, viento: 35.46, fecha: '9/6/22 20:45' },
+    // { humedad: 50.00, temperatura: 17.00, presion: 10.3051, luz: 28.44, viento: 33.46, fecha: '9/6/22 20:45' },
+    // { humedad: 80.00, temperatura: 22.00, presion: 13.057, luz: 28.44, viento: 38.46, fecha: '9/6/22 20:45' },
+    // { humedad: 60.00, temperatura: 25.00, presion: 14.057, luz: 28.44, viento: 31.46, fecha: '9/6/22 20:45' },
+    // { humedad: 79.00, temperatura: 28.00, presion: 15.054, luz: 28.44, viento: 30.46, fecha: '9/6/22 20:45' },
+    // { humedad: 75.00, temperatura: 30.00, presion: 18.054, luz: 28.44, viento: 29.46, fecha: '9/6/22 20:45' }
   ];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.getData();
+  }
+
+
+  getData() {
+    this.dataService.getDataPromise().then(data => {
+      if (data.docs.length > 0) {
+        this.dataFiltro = data.docs.map(doc => doc.data());
+        this.dataFiltro.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
+      }
+    });
   }
 
 }

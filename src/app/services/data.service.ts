@@ -12,4 +12,12 @@ export class DataService {
   getData(): Observable<any[]> {
     return this._firestore.collection('sensor_data').valueChanges();
   }
+
+  filterByDate(date: string) {
+    return this._firestore.collection('sensor_data', ref => ref.where('fecha', '==', new Date(date))).valueChanges();
+  }
+
+  getDataPromise() {
+    return this._firestore.collection('sensor_data').get().toPromise();
+  }
 }

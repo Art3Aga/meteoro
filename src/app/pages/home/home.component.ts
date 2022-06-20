@@ -21,7 +21,7 @@ export class HomeComponent implements AfterViewInit {
   getData() {
     this.dataService.getData().subscribe((data) => {
       this.dataSensores = data;
-      this.dataSensores.map(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
+      this.dataSensores.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
     });
   }
 

@@ -1,8 +1,8 @@
 <div class="layout">
-    <div class="table">
+    <div class="table" *ngIf="dataFiltro.length > 0">
       <button mat-raised-button color="accent" [routerLink]="['..']">Atras</button>
       <app-tabla-datos [showFilter]="true" [dataSensores]="dataFiltro"></app-tabla-datos>
     </div>
-    <app-grafica></app-grafica>
+    <app-grafica [dataSensores]="dataFiltro" *ngIf="dataFiltro.length > 0"></app-grafica>
 </div>
-  
+<mat-spinner *ngIf="dataFiltro.length == 0"></mat-spinner>
