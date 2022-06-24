@@ -33,19 +33,31 @@ export class TablaDatosComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes) {
+    if (changes) {
       this.setDataSource();
     }
   }
 
-  filterByDate(event: any) {
+  filterByDate(event?: any) {
+    this.filter = event.value;
+    console.log(event.value);
+    let date = new Date(event.value);
+    //Convertir end a este formato      año-mes-dia 23:59:59
+    
+    const start = new Date('2022-06-21 00:00:00');
+    const end = new Date('2022-06-21 23:59:59');
 
-    // console.log(`${event.value.toLocaleDateString()}`);
-
-    this.dataService.filterByDate(event.value).subscribe((data) => {
+    this.dataService.filterByDate(start, end).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.dataSource = new MatTableDataSource(this.dataSensores);
+    this.dataSource.paginator = this.paginator;
   }
 
   constructor(private dataService: DataService) { }

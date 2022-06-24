@@ -18,6 +18,7 @@ import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/mat
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 
 //Modulo de Grafica
@@ -52,6 +53,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,

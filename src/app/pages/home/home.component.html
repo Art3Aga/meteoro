@@ -3,6 +3,6 @@
     <button mat-raised-button color="accent" [routerLink]="['/filtro']">Filtrar</button>
     <app-tabla-datos [dataSensores]="dataSensores"></app-tabla-datos>
   </div>
-  <app-grafica [dataSensores]="dataSensores" *ngIf="dataSensores.length > 0"></app-grafica>
+  <app-grafica [dataSensores]="dataSensores.reverse()" *ngIf="dataSensores.length > 0"></app-grafica>
 </div>
 <mat-spinner *ngIf="dataSensores.length == 0"></mat-spinner>

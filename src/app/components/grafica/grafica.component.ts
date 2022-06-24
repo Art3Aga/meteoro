@@ -41,9 +41,11 @@ export class GraficaComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.setData()
+    if (this.dataSensores) {
+      this.setData();
+    }
   }
-
+  
   setData() {
     this.humedades = this.dataSensores.map(data => Number(data.humedad));
     this.temperaturas = this.dataSensores.map(data => Number(data.temperatura));

@@ -10,14 +10,14 @@ export class DataService {
   constructor(private _firestore: AngularFirestore) {}
 
   getData(): Observable<any[]> {
-    return this._firestore.collection('sensor_data').valueChanges();
+    return this._firestore.collection('sensor_data', ref => ref.orderBy('fecha', 'desc')).valueChanges();
   }
 
-  filterByDate(date: string) {
-    return this._firestore.collection('sensor_data', ref => ref.where('fecha', '==', new Date(date))).valueChanges();
+  filterByDate(start: any, end: any) {
+    return this._firestore.collection('sensor_data', ref => ref.where('fecha', '>=', start).where('fecha', '<=', end).orderBy('fecha', 'desc')).valueChanges();
   }
 
   getDataPromise() {
-    return this._firestore.collection('sensor_data').get().toPromise();
+    return this._firestore.collection('sensor_data', ref => ref.orderBy('fecha', 'desc')).get().toPromise();
   }
 }
