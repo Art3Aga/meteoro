@@ -9,6 +9,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class FiltroComponent implements AfterViewInit {
 
+  filter: string = '';
+
   dataFiltro: any[] = [
     // { humedad: 80.00, temperatura: 20.00, presion: 10.059, luz: 28.44, viento: 29.46, fecha: '9/6/22 20:45' },
     // { humedad: 85.00, temperatura: 27.00, presion: 4.0305, luz: 28.44, viento: 49.46, fecha: '9/6/22 20:45' },
@@ -35,6 +37,25 @@ export class FiltroComponent implements AfterViewInit {
         this.dataFiltro.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
       }
     });
+  }
+
+  filterByDate(event?: any) {
+    this.filter = event.value;
+    let date = new Date(event.value);
+
+    const fechaInicio = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 00:00:00`;
+    const fechaFin = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 23:59:59`;
+
+    const start = new Date(fechaInicio);
+    const end = new Date(fechaFin);
+
+    this.dataService.filterByDate(start, end).subscribe((data) => {
+      data.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
+      /* this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator; */
+      this.dataFiltro = data;
+    });
+
   }
 
 }
