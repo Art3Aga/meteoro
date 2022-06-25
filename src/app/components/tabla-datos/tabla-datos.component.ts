@@ -40,14 +40,16 @@ export class TablaDatosComponent implements AfterViewInit, OnChanges {
 
   filterByDate(event?: any) {
     this.filter = event.value;
-    console.log(event.value);
     let date = new Date(event.value);
-    //Convertir end a este formato      año-mes-dia 23:59:59
-    
-    const start = new Date('2022-06-21 00:00:00');
-    const end = new Date('2022-06-21 23:59:59');
+
+    const fechaInicio = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 00:00:00`;
+    const fechaFin = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 23:59:59`;
+
+    const start = new Date(fechaInicio);
+    const end = new Date(fechaFin);
 
     this.dataService.filterByDate(start, end).subscribe((data) => {
+      data.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });

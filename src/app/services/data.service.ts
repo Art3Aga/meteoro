@@ -13,7 +13,7 @@ export class DataService {
     return this._firestore.collection('sensor_data', ref => ref.orderBy('fecha', 'desc')).valueChanges();
   }
 
-  filterByDate(start: any, end: any) {
+  filterByDate(start: any, end: any): Observable<any[]> {
     return this._firestore.collection('sensor_data', ref => ref.where('fecha', '>=', start).where('fecha', '<=', end).orderBy('fecha', 'desc')).valueChanges();
   }
 
