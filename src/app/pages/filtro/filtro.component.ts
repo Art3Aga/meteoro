@@ -58,4 +58,9 @@ export class FiltroComponent implements AfterViewInit {
 
   }
 
+  clearFilter() {
+    this.filter = '';
+    this.getData();
+  }
+
 }

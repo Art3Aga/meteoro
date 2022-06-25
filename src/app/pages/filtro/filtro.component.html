@@ -4,7 +4,7 @@
       <mat-form-field>
         <mat-label>Filtrar por día</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="filter" (dateChange)="filterByDate($event)">
-        <button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter = ''">
+        <button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
           <mat-icon color="accent">close</mat-icon>
         </button>
         <mat-hint>MM/DD/YYYY</mat-hint>
