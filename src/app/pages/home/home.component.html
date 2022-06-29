@@ -1,8 +1,21 @@
 <div class="layout">
   <div class="table" *ngIf="dataSensores.length > 0">
-    <button mat-raised-button color="accent" [routerLink]="['/filtro']">Filtrar</button>
+    <button mat-raised-button color="accent" [routerLink]="['/filtro']">
+      Filtrar
+    </button>
+    <button
+      mat-icon-button
+      color="accent"
+      (click)="getDataFromThingSpeak()"
+      [disabled]="dataSensores.length == 0"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
     <app-tabla-datos [dataSensores]="dataSensores"></app-tabla-datos>
   </div>
-  <app-grafica [dataSensores]="dataSensores.reverse()" *ngIf="dataSensores.length > 0"></app-grafica>
+  <app-grafica
+    [dataSensores]="dataSensores.reverse()"
+    *ngIf="dataSensores.length > 0"
+  ></app-grafica>
 </div>
 <mat-spinner *ngIf="dataSensores.length == 0"></mat-spinner>

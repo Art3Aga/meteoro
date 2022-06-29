@@ -33,6 +33,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FiltroComponent } from './pages/filtro/filtro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//HTTP
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +62,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [
     DataService,

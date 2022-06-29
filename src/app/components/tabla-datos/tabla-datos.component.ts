@@ -12,11 +12,11 @@ import { DataService } from 'src/app/services/data.service';
 export class TablaDatosComponent implements AfterViewInit, OnChanges {
 
   @Input() showFilter = false;
-  @Input() dataSensores!: DataSensor[];
+  @Input() dataSensores!: any[];
 
   filter: string = '';
 
-  displayedColumns: string[] = ['humedad', 'temperatura', 'presion', 'luz', 'viento', 'fecha'];
+  displayedColumns: string[] = ['humedad', 'temperatura', 'presion', 'luz', 'viento', 'temperatura2', 'fecha'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

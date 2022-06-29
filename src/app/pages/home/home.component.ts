@@ -14,7 +14,8 @@ export class HomeComponent implements AfterViewInit {
   constructor(private dataService: DataService) { }
 
   ngAfterViewInit(): void {
-    this.getData();
+    // this.getData();
+    this.getDataFromThingSpeak();
   }
 
 
@@ -22,6 +23,13 @@ export class HomeComponent implements AfterViewInit {
     this.dataService.getData().subscribe((data) => {
       this.dataSensores = data;
       this.dataSensores.forEach(item => item.fecha = `${new Date(item.fecha.seconds * 1000).toLocaleDateString()} ${new Date(item.fecha.seconds * 1000).toLocaleTimeString()}`);
+    });
+  }
+
+  getDataFromThingSpeak() {
+    this.dataService.getDataFromThingSpeak().subscribe((data) => {
+      const dataSensor: any[] = data.feeds;
+      this.dataSensores = dataSensor;
     });
   }
 

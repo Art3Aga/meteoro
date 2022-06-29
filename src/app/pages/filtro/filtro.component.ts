@@ -11,22 +11,13 @@ export class FiltroComponent implements AfterViewInit {
 
   filter: string = '';
 
-  dataFiltro: any[] = [
-    // { humedad: 80.00, temperatura: 20.00, presion: 10.059, luz: 28.44, viento: 29.46, fecha: '9/6/22 20:45' },
-    // { humedad: 85.00, temperatura: 27.00, presion: 4.0305, luz: 28.44, viento: 49.46, fecha: '9/6/22 20:45' },
-    // { humedad: 80.00, temperatura: 25.00, presion: 60.305, luz: 28.44, viento: 19.46, fecha: '9/6/22 20:45' },
-    // { humedad: 80.00, temperatura: 37.00, presion: 9.0305, luz: 28.44, viento: 35.46, fecha: '9/6/22 20:45' },
-    // { humedad: 50.00, temperatura: 17.00, presion: 10.3051, luz: 28.44, viento: 33.46, fecha: '9/6/22 20:45' },
-    // { humedad: 80.00, temperatura: 22.00, presion: 13.057, luz: 28.44, viento: 38.46, fecha: '9/6/22 20:45' },
-    // { humedad: 60.00, temperatura: 25.00, presion: 14.057, luz: 28.44, viento: 31.46, fecha: '9/6/22 20:45' },
-    // { humedad: 79.00, temperatura: 28.00, presion: 15.054, luz: 28.44, viento: 30.46, fecha: '9/6/22 20:45' },
-    // { humedad: 75.00, temperatura: 30.00, presion: 18.054, luz: 28.44, viento: 29.46, fecha: '9/6/22 20:45' }
-  ];
+  dataFiltro: any[] = [];
 
   constructor(private dataService: DataService) { }
 
   ngAfterViewInit(): void {
-    this.getData();
+    // this.getData();
+    this.getDataFromThingSpeak();
   }
 
 
@@ -58,9 +49,19 @@ export class FiltroComponent implements AfterViewInit {
 
   }
 
+
+  getDataFromThingSpeak() {
+    this.dataService.getDataFromThingSpeak().subscribe((data) => {
+      const response: any[] = data.feeds;
+      this.dataFiltro = response;
+    });
+  }
+
   clearFilter() {
     this.filter = '';
-    this.getData();
+    // this.getData();
+    this.getDataFromThingSpeak();
   }
+
 
 }
